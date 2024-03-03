@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	<meta charset="UTF-8">
+	<title>Query Form</title>
+	<link rel="stylesheet" type="text/css" href="QueryFormExternal.css">
+	</head>
+	
+	<body>
+		<div id="nav">
+		<!--The navigation bar-->
+			<span class="travelbuddy main"> Travel Buddy</span>
+		
+		<nav>
+		<ul class="main">	
+			<li><a href="https://w1747361.users.ecs.westminster.ac.uk/webdev/Mainpage.html" target="_blank">Home</a></li>
+			<li><a href="https://w1749324.users.ecs.westminster.ac.uk/webdev/coursework_studentdetails.html" target="_blank">About Us</a></li>
+			<li><a href="https://w1747361.users.ecs.westminster.ac.uk/webdev/QueryForm.html" target="_blank">Query Form</a></li>
+			<li><a href="https://w1767527.users.ecs.westminster.ac.uk/webdev/buy_page.html" target="_blank">Buy Products</a></li>
+			<li><a href="https://w1749324.users.ecs.westminster.ac.uk/webdev/coursework_quiz.html" target="_blank">Quiz</a></li>
+			<li><a href="https://w1758610.users.ecs.westminster.ac.uk/webdev/ThumbnailImages.html" target="_blank">Thumbnail Images</a></li>
+			<li><a href="https://w1758610.users.ecs.westminster.ac.uk/webdev/Sitemap.html" target="_blank">Site Map</a></li>
+		</ul>
+		</nav>
+	</div>
+	
+	<!--Form-->
+	<div class="form">	
+		<form action = "mailto:w1747361@my.westminster.ac.uk" enctype = "text/plain" method="post">
+		<div id="myform">	
+			
+			<div class="qf">QUERY FORM</div> <br><br>
+			
+			<label for="fname"></label><input type="text" name="Fisrt Name " id="fname" placeholder="Enter your Full Name" class="border text" > 
+			
+			<br>
+			<br>
+			<label for="email"></label><input type="email" name="Email ID " id="email" placeholder="Enter your Email Address" class="border text">
+			
+			<br>
+			<br>
+			
+			
+			<label for="query" >Subject of query:</label> 
+				<select name="Query " id="query" class="border text">
+					<option value=" Booking Date " >Booking Date</option>
+					<option value=" Travel Essentials ">Travel Essentials</option>
+					<option value=" Travel Place ">Travel Place</option>
+				</select>
+			
+			
+			<br>
+			<br>
+			<label for="details"></label>
+			<textarea name="Details " id="details" rows="5" cols="38" placeholder="Enter the details of your query" class="border"></textarea>
+			<br>
+			<br>
+			<input type="reset" name="button" value="Edit" class="border">
+			<button type = "button" id="viewQuery" onclick="QueryCheck(this.form)" class="border">View Query</button>
+			
+			
+		
+			
+			<br>
+	</div>
+	<!--Invoice-->
+	<div id="invoice">	
+		Name : <span id="fnameInvoice"></span>
+		<br>
+		Email : <span id="emailInvoice"></span>
+		<br>
+		Subject Of Query : <span id="queryInvoice"></span>
+		<br>
+		Details Of Query : <span id="detilInvoice"></span>
+		<br>
+		<button type = "button" id="editForm" class="border">Edit</button>
+		<button type = "submit" id="sendorder" class="border">Send Query</button>
+	</div>
+	</form>
+		</div>
+		
+		
+	
+		<!--Link to the page editor form of student 2-->
+		<div class="footer">
+			
+			<a href="PageEditor.html" target="_blank" >Page Editor</a>
+			
+		</div>
+		
+		
+		<script>
+		function getSelectedText( selectList ) {
+		return selectList.options[ selectList.selectedIndex ].text;
+		}
+
+
+		/*Form Validation*/
+		function QueryCheck (form){
+		/*Variable declaration*/
+		document.getElementById("myform").style.display = "block";
+		var userNameSubmitted = form.fname.value;
+		var emailS = form.email.value;
+		var option = getSelectedText(form.query);
+		var qDetails = form.details.value;
+		
+			/*Validating UserName fieid*/
+			var userNameSubmitted = form.fname.value;
+			if (userNameSubmitted == 0 ){
+				alert("Please enter name!");
+				return false;
+			}
+			
+			/*Validating Email fieid*/
+			var emailS = form.email.value;
+			if (emailS == 0){
+				alert("Please enter email id !");
+				return false;
+				}
+			else if (emailS.indexOf("@") == -1 ||  emailS.indexOf(".") == -1) {
+				alert("Please enter valid email id !");
+				return false;
+			}
+			
+			
+			
+			/*Validating Query Details fieid*/
+			var qDetails =  form.details.value;
+			if (qDetails == 0){
+				alert("Please enter the details of you query!");
+				return false;
+			}
+			else {
+				/*Invoice page*/
+				document.getElementById("myform").style.display = "none";
+				document.getElementById("invoice").style.display = "block";
+				
+				
+				document.getElementById("fnameInvoice").innerHTML = userNameSubmitted;	
+				document.getElementById("emailInvoice").innerHTML = emailS;	
+				document.getElementById("queryInvoice").innerHTML = option;
+				document.getElementById("detilInvoice").innerHTML = qDetails;
+			}
+		};
+		
+		
+		
+		
+		
+		document.getElementById("editForm").addEventListener("click",function(){
+				document.getElementById("myform").style.display = "block";
+				document.getElementById("invoice").style.display = "none";
+				});
+		
+				
+		</script>
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>
+	
+	
+	
+	
+	
+	
